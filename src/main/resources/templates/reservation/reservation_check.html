@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/reservation_check.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>hotsix</title>
+</head>
+<body>
+    <header class="header-container">hotsix</header>
+    <h1 class="home"><i class="fa-solid fa-house fa-lg" style="color:black" ></i></h1>
+    
+    <div class="main-container">
+        <div><h1 class="page-title">예약 확인</h1></div>
+
+        <div class="reservation-list">
+            <h2 class="main-name">예약 정보 확인</h2>
+            <div class="menu-line"></div>
+
+            <div class="serve-container">
+                <h2 class="menu-name">예약 날짜</h2>
+                <div class="main-box">
+                    <table class="reservation-date" >
+                        <tr>                       
+                            <th>예약일</th>
+                            <td>2023.02</td>
+                        </tr>
+                        <tr>
+                            <th>예약 시간</th>
+                            <td>20:20:20</td>
+                        </tr> 
+                    </table> 
+                </div>
+                
+                <h2 class="menu-name">인원</h2>
+                <div class="main-box">
+                    <table class="people-list">
+                        <tr> 
+                            <th>대인</th>
+                            <td>3명</td>
+                        </tr>
+                        <tr>
+                            <th>소인</th>
+                            <td>2명</td>
+                        </tr>
+                    </table> 
+                </div>
+                
+
+                <h2 class="menu-name">예약 고객 정보</h2> 
+                <div class="main-box">
+                    <table class="reservation-data" >
+                        <tr>                       
+                            <th>예약번호</th>
+                            <td>20230218</td>
+                        </tr>
+                        <tr>                       
+                            <th>성명(한글)</th>
+                            <td>코리아it</td>
+                        </tr>
+                        <tr>
+                            <th>연락처</th>
+                            <td>010-1111-2222</td>
+                        </tr>        
+                        <tr>
+                            <th>이메일</th>
+                            <td>koreait@google.com</td>
+                        </tr>  
+                    </table>
+                </div>
+
+                <div class="menu-container"></div>
+                <h2 class="menu-name">추가 요청 사항</h2>
+                <div class="main-button">
+                    <input type="text" class="request-input">
+                    <button type="button" class="change-button">예약변경</button>
+                    <button type="button" class="cancle-button">예약취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
