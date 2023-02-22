@@ -1,0 +1,96 @@
+'11:00 ~ 14:00'
+'14:00 ~ 17:00'
+'17:00 ~ 20:20'
+
+SELECT * FROM restaurant.dinning_mst; 
+
+UPDATE dinning_mst
+SET reserve_date = '2023-04-10', reserve_time = '11:00 ~ 14:00'
+WHERE reserve_id = 4;
+UPDATE dinning_mst
+SET reserve_date = '2023-04-01', reserve_time = '14:00 ~ 17:00'
+WHERE reserve_id = 5;
+UPDATE dinning_mst
+SET reserve_date = '2023-03-05', reserve_time = '14:00 ~ 17:00'
+WHERE reserve_id = 6;
+UPDATE dinning_mst
+SET reserve_date = '2023-03-06', reserve_time = '14:00 ~ 17:00'
+WHERE reserve_id = 7;
+UPDATE dinning_mst
+SET reserve_date = '2023-03-07', reserve_time = '17:00 ~ 20:20'
+WHERE reserve_id = 8;
+UPDATE dinning_mst
+SET reserve_date = '2023-03-08', reserve_time = '17:00 ~ 20:20'
+WHERE reserve_id = 9;
+UPDATE dinning_mst
+SET reserve_date = '2023-03-09', reserve_time = '11:00 ~ 14:00'
+WHERE reserve_id = 10;
+UPDATE dinning_mst
+SET reserve_date = '2023-03-10', reserve_time = '14:00 ~ 17:00'
+WHERE reserve_id = 11;
+UPDATE dinning_mst
+SET reserve_date = '2023-03-10', reserve_time = '14:00 ~ 17:00'
+WHERE reserve_id = 12;
+UPDATE dinning_mst
+SET reserve_date = '2023-03-10', reserve_time = '11:00 ~ 14:00'
+WHERE reserve_id = 13;
+UPDATE dinning_mst
+SET reserve_date = '2023-03-10', reserve_time = '17:00 ~ 20:20'
+WHERE reserve_id = 14;
+UPDATE dinning_mst
+SET reserve_date = '2023-03-10', reserve_time = '17:00 ~ 20:20'
+WHERE reserve_id = 15;
+UPDATE dinning_mst
+SET reserve_date = '2023-03-14', reserve_time = '11:00 ~ 14:00'
+WHERE reserve_id = 16;
+UPDATE dinning_mst
+SET reserve_date = '2023-03-14', reserve_time = '17:00 ~ 20:20'
+WHERE reserve_id = 17;
+UPDATE dinning_mst
+SET reserve_date = '2023-03-14', reserve_time = '14:00 ~ 17:00'
+WHERE reserve_id = 18;
+UPDATE dinning_mst
+SET reserve_date = '2023-03-14', reserve_time = '11:00 ~ 14:00'
+WHERE reserve_id = 19;
+UPDATE dinning_mst
+SET reserve_date = '2023-03-14', reserve_time = '11:00 ~ 14:00'
+WHERE reserve_id = 20;
+UPDATE dinning_mst
+SET reserve_date = '2023-03-17', reserve_time = '11:00 ~ 14:00'
+WHERE reserve_id = 21;
+UPDATE dinning_mst
+SET reserve_date = '2023-03-17', reserve_time = '17:00 ~ 20:20'
+WHERE reserve_id = 22;
+UPDATE dinning_mst
+SET reserve_date = '2023-03-18', reserve_time = '17:00 ~ 20:20'
+WHERE reserve_id = 23;
+UPDATE dinning_mst
+SET reserve_date = '2023-03-17', reserve_time = '11:00 ~ 14:00'
+WHERE reserve_id = 24;
+UPDATE dinning_mst
+SET reserve_date = '2023-03-18', reserve_time = '17:00 ~ 20:20'
+WHERE reserve_id = 25;
+UPDATE dinning_mst
+SET reserve_date = '2023-03-18', reserve_time = '11:00 ~ 14:00'
+WHERE reserve_id = 26;
+UPDATE dinning_mst
+SET reserve_date = '2023-03-21', reserve_time = '14:00 ~ 17:00'
+WHERE reserve_id = 27;
+UPDATE dinning_mst
+SET reserve_date = '2023-03-21', reserve_time = '17:00 ~ 20:20'
+WHERE reserve_id = 28;
+UPDATE dinning_mst
+SET reserve_date = '2023-04-21', reserve_time = '14:00 ~ 17:00'
+WHERE reserve_id = 29;
+UPDATE dinning_mst
+SET reserve_date = '2023-03-21', reserve_time = '11:00 ~ 14:00'
+WHERE reserve_id = 30;
+UPDATE dinning_mst
+SET reserve_date = '2023-03-21', reserve_time = '11:00 ~ 14:00'
+WHERE reserve_id = 31;
+UPDATE dinning_mst
+SET reserve_date = '2023-03-21', reserve_time = '17:00 ~ 20:20'
+WHERE reserve_id = 32;
+
+
+
