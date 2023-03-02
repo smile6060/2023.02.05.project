@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/css/check_page.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <title>hotsix</title>
+</head>
+<body>
+    <header class="header-container">hotsix</header>
+    <h1 class="home-button"><i class="fa-solid fa-house fa-3x"></i></h1>
+    <div class="main-container">
+        <div><h1 class="page-title">예약 확인</h1></div>
+        <div class="title-line"></div>
+        <p class="message">hotsix에 오신 것을 환영합니다.</p>
+        <div class="title-line"></div>
+
+        <div class="select">
+            <ul class="reserve-search" >
+                <li class="reserve-change current" data-tab="tab-1">
+                    예약 확인(TEL)
+                </li>
+                <li class="reserve-change" data-tab="tab-2">
+                    예약 확인(이름)
+                </li>
+            </ul>
+        </div>
+        <div id="tab-1" class="serve-container current">
+            <div class="third-container">
+                <div class="p-group">
+                    <p class="change-name1">예약번호</p>
+                    <div class="check-error"></div>
+                    <p class="change-name2">전화번호</p>
+                    <div class="check-error"></div>
+                </div>
+                <div class="input-group">
+                    <input id="reserve-number" type="text" class="input-one">
+                    <input id="telephone-name" type="text" class="input-two">
+                </div>
+            </div>
+            <div class="main-button">
+                <button class="reserve-button">예약확인</button>
+            </div>
+
+            <div class="search-group">
+                <p class="search-number">예약번호 찾기</p>
+            </div>
+        </div>
+            
+        <div id="tab-2" class="serve-container"> 
+            <div class="third-container">
+                <div class="p-group">
+                    <p class="change-name1">예약번호</p>
+                    <div class="check-error"></div>
+                    <p class="change-name2">이름</p>
+                    <div class="check-error"></div>
+                </div>
+                <div class="input-group">
+                    <input type="text" class="input-one">
+                    <input type="text" class="input-two">
+                </div>
+            </div>
+            <div class="main-button">
+                <button class="reserve-button">예약확인</button>
+            </div>
+
+            <div class="search-group">
+                <p class="search-number">예약번호 찾기</p>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/static/js/check_page.js"></script>
+</html>

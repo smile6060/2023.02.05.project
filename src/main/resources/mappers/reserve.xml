@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.koreait.restaurant.repository.ReserveRepository">
+
+    <resultMap id="dinningMst" type="com.koreait.restaurant.entity.DinningMst">
+        <result property="reserveId" column="reserve_id"></result>
+        <result property="reserveName" column="reserve_name"></result>
+        <result property="reserveDate" column="reserve_date"></result>
+        <result property="reserveTime" column="reserve_time"></result>
+        <result property="number" column="number"></result>
+        <result property="email" column="email"></result>
+        <result property="adult" column="adult"></result>
+        <result property="child" column="child"></result>
+        <result property="guest" column="guest"></result>
+        <result property="request" column="request"></result>
+    </resultMap>
+
+    <select id="getUserSearchReserveCheck" parameterType="Integer" resultMap="dinningMst">
+        select
+            reserve_id as reserveId,
+            reserve_name as reserveName,
+            reserve_date as reserveDate,
+            reserve_time as reserveTime,
+            number,
+            email,
+            adult,
+            child,
+            guest,
+            request
+        from
+            dinning_mst dm
+        where
+            dm.reserve_id = #{reserveId}
+    </select>
+    <select id="userSearchReserve" parameterType="Integer" resultMap="dinningMst">
+            select
+                reserve_id as reserveId,
+                reserve_name as reserveName,
+                reserve_date as reserveDate,
+                reserve_time as reserveTime,
+                number,
+                email,
+                adult,
+                child,
+                guest,
+                request
+            from
+                dinning_mst dm
+            where
+            1 = 1
+            <if test="reserveId != null and reserveId != ''">
+                and (dm.reserve_name)
+            </if>
+        </select>
+
+    <insert id="saveReserve" parameterType="com.koreait.restaurant.entity.DinningMst"
+            useGeneratedKeys="true"
+            keyProperty="reserveId">
+
+        insert into dinning_mst
+        values (0, #{reserveId}, #{reserveName}, #{number})
+    </insert>
+
+</mapper>

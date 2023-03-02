@@ -1,6 +1,26 @@
+window.onload = () => {
+    ComponentEvent.getInstance().addChangeNameEvent();
+}
 
-function jbSubmit() {
-    var pw1 = document.getElementById( 'pw1' ).value;
-    var pw2 = document.getElementById( 'pw2' ).value;
-    alert( pw1 + ' vs ' + pw2 );
+class ComponentEvent {
+    static #instance = null;
+    static getInstance() {
+        if(this.#instance == null) {
+            this.#instance = new ComponentEvent();
+        }
+        return this.#instance;
+    }
+
+    addChangeNameEvent = () => {
+        const reservationChange2 = document.getElementById("reservation-change2");
+
+        reservationChange2.onclick = () => {
+            const changeName1 = document.querySelector(".change-name1");
+
+            if(changeName1.display == 'block') {
+                changeName1.display = 'none';
+            }
+        }
+
+    } 
 }

@@ -28,7 +28,7 @@ body {
     font-size: 100px;
   }
 
-.home {
+.home-button{
     position: fixed;
     left: 96%;
     bottom: 92%;
@@ -74,7 +74,7 @@ body {
     font-size: 50px;
 }
 
-.reservation-list{
+.reserve-list{
     margin: 0px;
 
     height: 1000px;
@@ -94,9 +94,9 @@ body {
     background-color: #dddddd;
 }
 
-.serve-container {
-    display: flex;
-    flex-direction: column;
+.menu-name {
+    margin: 0px 0px 20px;
+    font-size: 25px;
 }
 
 .main-box {
@@ -106,16 +106,39 @@ body {
     margin-bottom: 20px;
 }
 
-.menu-name {
-    margin: 0px 0px 20px;
-    font-size: 25px;
+.reserve-data {
+    flex-wrap: wrap;
 }
 
-.reservation-date {
+.reserve-data th {
+    border: 1px solid #bcbcbc;
+
+    background-color: #DFD3C3;
+    font-size: 18px;
+
+    width: 100px;
+    height: 45px;
+}
+
+.reserve-data td {
+    border: 1px solid #bcbcbc;
+
+    text-align: center;
+    font-size: 18px;
+
+    width: 300px;
+    height: 45px;
+}
+
+.serve-container {
+    display: flex;
+    flex-direction: column;
+}
+.reserve-date {
     width: 300px;
 }
 
-.reservation-date th {
+.reserve-date th {
     border: 1px solid #bcbcbc;
 
     background-color: #DFD3C3   ;
@@ -125,7 +148,7 @@ body {
     height: 45px;
 }
 
-.reservation-date td {
+.reserve-date td {
     border: 1px solid #bcbcbc;
 
     text-align: center;
@@ -158,29 +181,6 @@ body {
     height: 45px;
 }
 
-.reservation-data {
-    flex-wrap: wrap;
-}
-
-.reservation-data th {
-    border: 1px solid #bcbcbc;
-
-    background-color: #DFD3C3;
-    font-size: 18px;
-
-    width: 100px;
-    height: 45px;
-}
-
-.reservation-data td {
-    border: 1px solid #bcbcbc;
-
-    text-align: center;
-    font-size: 18px;
-
-    width: 300px;
-    height: 45px;
-}
 
 .request-input {
     width: 404px;

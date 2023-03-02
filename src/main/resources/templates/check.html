@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/css/check.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>hotsix</title>
+</head>
+<body>
+    <header class="header-container">hotsix</header>
+    <h1 class="home-button"><i class="fa-solid fa-house fa-3x"></i></h1>
+    <div class="main-container">
+        <div><h1 class="page-title">예약 확인</h1></div>
+
+        <div class="reserve-list">
+            <h2 class="main-name">예약 정보 확인</h2>
+            <div class="menu-line"></div>
+
+            <h2 class="menu-name">예약 고객 정보</h2> 
+            <div class="main-box">
+                <table class="reserve-data" >
+                    <tr>                       
+                        <th>성명(한글)</th>
+                        <td></td> 
+                    </tr>
+                    <tr>                       
+                        <th>예약번호</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>연락처</th>
+                        <td></td>
+                    </tr>        
+                    <tr>
+                        <th>이메일</th>
+                        <td></td>
+                    </tr>  
+                </table>
+            </div>
+
+            <div class="serve-container">
+                <h2 class="menu-name">예약 날짜</h2>
+                <div class="main-box">
+                    <table class="reserve-date" >
+                        <tr>                       
+                            <th>예약일</th> 
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>예약날짜</th>
+                            <td></td>
+                        </tr> 
+                    </table> 
+                </div>
+                
+                <h2 class="menu-name">인원</h2>
+                <div class="main-box">
+                    <table class="people-list">
+                        <tr> 
+                            <th>대인</th>
+                            <td>명</td>
+                        </tr>
+                        <tr>
+                            <th>소인</th>
+                            <td>명</td>
+                        </tr>
+                    </table> 
+                </div>
+
+                <div class="menu-container"></div>
+                <h2 class="menu-name">추가 요청 사항</h2>
+                <div class="main-button">
+                    <input type="text" class="request-input">
+                </div>
+                <div class="menu-line"></div>
+                <div class="group-button">
+                    <button type="button" class="change-button">예약변경</button>
+                    <button type="button">예약취소</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/static/js/check.js"></script>
+</html>

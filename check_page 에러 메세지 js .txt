@@ -1,0 +1,24 @@
+
+	// setErrorMessage (errors) {
+	// 	const checkError = document.querySelectorAll(".check-error");
+	
+	// 	this.#clearErrorMessage();
+	
+	// 	Object.keys(errors).forEach(error => {
+	// 		if (error == "reserveId") {
+	// 			checkError[ 0 ].textContent = errors[ error ];
+	// 		} else if (error == "number") {
+	// 			checkError[ 1 ].textContent = errors[ error ];
+	// 		} else if (error == "reserveName") {
+	// 			checkError[ 2 ].textContent = errors[ error ];
+	// 		} 
+	// 	});
+	// }
+	
+	// #clearErrorMessage() {
+	// 	const checkError = document.querySelectorAll(".check-error");
+	// 	checkError.forEach(error => {
+	// 		error.textContent = "";
+	// 	});
+	// }
+	
