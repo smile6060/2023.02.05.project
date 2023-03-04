@@ -158,24 +158,20 @@ ul.reserve-search{
     flex-direction: column;
     justify-content: center;
 
-    margin: 20px 30px 22px 40px;
+    margin: 23px 30px 25px 40px;
 
     width: 100px;
     font-weight: bold;
 }
 
-.reserve-number {
+.reserve-number1, .reserve-number2 {
     font-size: 20px;
 }
 
-.change-name1 {
-    font-size: 20px;
-}
+.number-telephone1, .number-telephone2 {
+    margin: 15px 0px;
 
-.check-error {
-    margin-bottom: 10px;
-    font-size: 11px;
-    color: red;
+    font-size: 20px;
 }
 
 .input-group {
@@ -183,19 +179,19 @@ ul.reserve-search{
     flex-direction: column;
     justify-content: center;
 
-    margin: 0px;
+    margin-top: 34px;
 
     cursor: pointer;
 }
 
-.input-one {
-    margin-bottom: 45px;
-
+.input-contents {
     cursor: pointer;
 }
 
-.input-two {
-    cursor: pointer;
+.check-error {
+    margin-bottom: 20px;
+    font-size: 11px;
+    color: red;
 }
 
 .reserve-number {
@@ -243,12 +239,6 @@ ul.reserve-search{
     font-size: 15px;
     color: #a39e9e;
 }
-
-
-.change-name2 {
-    font-size: 20px;
-}
-
 
 
 

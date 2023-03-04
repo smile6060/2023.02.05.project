@@ -17,11 +17,11 @@ public class ReserveService {
     private final ReserveRepository reserveRepository;
 
     public int getSearchReserveCheck(DinningMst dinningMst) {
-       return reserveRepository.getUserSearchReserveCheck(dinningMst);
+       return reserveRepository.saveReserveCheck(dinningMst);
 
     }
     public int userSearchReserve(DinningMst dinningMst) {
-        return reserveRepository.userSearchReserve(dinningMst);
+        return reserveRepository.findUserByReserveId(dinningMst);
 
     }
 

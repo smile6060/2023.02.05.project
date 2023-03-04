@@ -18,12 +18,11 @@ public class ReserveApi {
 
     @Autowired
     private ReserveService reserveService;
-    @Autowired
-    private SearchService searchService;
 
     @ValidAspect
     @PostMapping("/check")
     public ResponseEntity<?> getSearchReserveCheck(@RequestBody DinningMst dinningMst) {
+
         return ResponseEntity
                 .ok()
                 .body(new CMRespDto<>(HttpStatus.OK.value(), "Successfully", reserveService.getSearchReserveCheck(dinningMst)));
@@ -31,7 +30,7 @@ public class ReserveApi {
     }
 
     @ValidAspect
-    @PostMapping("/Page/{reserveId}")
+    @PostMapping("/page/{reserveId}")
     public ResponseEntity<?> getCheckPage(@RequestBody DinningMst dinningMst) {
 
         return ResponseEntity

@@ -1,5 +1,8 @@
 window.onload = () => {
 	ComponentEvent.getInstance().addClickEventReserveButton();
+
+	// ReservePageService.getInstance().onLoadCheck();
+	// ReservePageService.getInstance().setReserveData();
 }
 
 $(document).ready(function(){
@@ -35,7 +38,7 @@ class ReservePageApi {
 		$.ajax({
 			async: false,
 			type: "post",
-			url: "http://localhost:8000/api/reserve/Page/{reserveId}",
+			url: "http://localhost:8000/api/reserve/page/{reserveId}",
 			contentType: "application/json",
 			data: JSON.stringify(),
 			dataType: "json",
@@ -50,7 +53,6 @@ class ReservePageApi {
 	}
 
 	setReserveCheck() {
-		console.log("api 정상 작동");
 		$.ajax({
 			async: false,
 			type: "post",
@@ -90,7 +92,6 @@ class ReservePageService {
 
             const reserveButton = document.querySelector(".reserve-button");
             reserveButton.click();
-			console.log("온로드체크 정상작동");
         }
 		this.setReserveData();
 		
@@ -101,29 +102,27 @@ class ReservePageService {
 		const reserveData = document.querySelector(".reserve-data");
 		reserveData=innerHTML = ``;
 		
-		responseData.forEach(data => {
+		responseData.forEach((data, index) => {
 			reserveData.innerHTML += `
-			<tr>                       
-				<th>성명(한글)</th>
-				<td>${data.reserveName}</td> 
-			</tr>
-			<tr>                       
-				<th>예약번호</th>
-				<td>${data.reserveId}</td>
-			</tr>
-			<tr>
-				<th>연락처</th>
-				<td>${data.number}</td>
-			</tr>        
-			<tr>
-				<th>이메일</th>
-				<td>${data.email}</td>
-			</tr>  
-				`;
+				<tr>                       
+					<th>성명(한글)</th>
+					<td>${data.reserveName}</td> 
+				</tr>
+				<tr>                       
+					<th>예약번호</th>
+					<td>${data.reserveId}</td>
+				</tr>
+				<tr>
+					<th>연락처</th>
+					<td>${data.number}</td>
+				</tr>        
+				<tr>
+					<th>이메일</th>
+					<td>${data.email}</td>
+				</tr>  
+			`;
 		});
-		
 	}
-	
 }
 
 class ComponentEvent {
@@ -137,32 +136,40 @@ class ComponentEvent {
 
 	addClickEventReserveButton() {
 		const reserveButton = document.querySelector(".reserve-button");
-        const inputOne = document.querySelector(".input-one");
-        const inputTwo = document.querySelector(".input-two");
+		/*var inputResv = document.getElementById("reserve-number1").value;
+		var inputTel = document.getElementById("telephone-name1").value;*/
+
+		var listVar1 = $('#reserve-number1').val();
+		var listVar2 = $('#telephone-name1').val();
+
+		/*const inputOne = document.querySelectorAll("reserve-number1");
+		const inputTwo = document.querySelectorAll("telephone-name1");*/
+
         reserveButton.onclick = () => {
-			console.log("reserveButton 버튼 인식함");
-			if(inputOne.value == "") {
-				alert("예약번호를 입력해주세요.")
+			console.log(listVar1);
+			console.log(listVar2);
+
+	
+
+			if(listVar1.value == null) {
 				return false;
 			} else {
 				location.reload();
 			}
-			if(inputTwo.value == "") {
-				alert("전화번호 또는 이름을 입력해주세요.")
+			if(listVar2.value == null) {
 				return false;
 			} else {
 				location.reload();
 			}
 
-			location.href = `http://localhost:8000/check?reserveId=${inputOne.value}`;
-			inputOne.onkeyup = () => {
+			location.href = `http://localhost:8000/check?reserveId=${listVar1.value}`;
+			listVar1.onkeyup = () => {
 				if (window.event.keyCode == 13) {
 					reserveButton.click();
 				}
             }
-			ReservePageService.getInstance().setReserveData();
 			ReservePageService.getInstance().onLoadCheck();
-			console.log("ReservePageService 작동됨");
+			ReservePageService.getInstance().setReserveData();
         }
     }
 

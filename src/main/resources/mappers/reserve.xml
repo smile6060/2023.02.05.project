@@ -18,7 +18,13 @@
         <result property="request" column="request"></result>
     </resultMap>
 
-    <select id="getUserSearchReserveCheck" parameterType="Integer" resultMap="dinningMst">
+    <insert id="saveReserveCheck" parameterType="com.koreait.restaurant.entity.DinningMst"
+            useGeneratedKeys="true" keyProperty="reserveId">
+        insert into dinning_mst
+        values(0, #{reserveId}, #{reserveName}, #{reserveDate}, #{reserveTime}, #{number}, #{email}, #{adult}, #{child}, #{guest}, #{request})
+    </insert>
+
+    <select id="findUserByReserveId" parameterType="integer" resultType="com.koreait.restaurant.entity.DinningMst">
         select
             reserve_id as reserveId,
             reserve_name as reserveName,
@@ -31,37 +37,11 @@
             guest,
             request
         from
-            dinning_mst dm
+            dinning_mst
         where
-            dm.reserve_id = #{reserveId}
+            reserve_id = #{reserveId}
     </select>
-    <select id="userSearchReserve" parameterType="Integer" resultMap="dinningMst">
-            select
-                reserve_id as reserveId,
-                reserve_name as reserveName,
-                reserve_date as reserveDate,
-                reserve_time as reserveTime,
-                number,
-                email,
-                adult,
-                child,
-                guest,
-                request
-            from
-                dinning_mst dm
-            where
-            1 = 1
-            <if test="reserveId != null and reserveId != ''">
-                and (dm.reserve_name)
-            </if>
-        </select>
 
-    <insert id="saveReserve" parameterType="com.koreait.restaurant.entity.DinningMst"
-            useGeneratedKeys="true"
-            keyProperty="reserveId">
 
-        insert into dinning_mst
-        values (0, #{reserveId}, #{reserveName}, #{number})
-    </insert>
 
 </mapper>

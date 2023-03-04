@@ -1,6 +1,7 @@
 window.onload = () => {
-
+	CheckService.getInstance().setReserveData();
 }
+
 
 class CheckApi {
 	static #instance = null;
@@ -11,23 +12,27 @@ class CheckApi {
 		return this.#instance;
 	}
 
-	check() {
+	getCheckList() {
+		let returnData = null;
+
 		$.ajax({
 			async: false,
-			type: "post",
-			url: "http://localhost:8000/check",
+			type: "get",
+			url: "http://localhost:8000/api/search/contents",
 			contentType: "application/json",
 			data: JSON.stringify(),
 			dataType: "json",
 			success: response => {
-				responseData = response.data;
+				console.log(response);
+                returnData = response.data;
 			},
 			error: error => {
 				console.log(error);
 			}
 		});
-		return responseData;
+		return returnData;
 	}
+
 }
 
 class CheckService{
@@ -39,41 +44,51 @@ class CheckService{
 		return this.#instance;
 	}
 
-	
+	/*onLoadSearch() {
+        const URLSearch = new URLSearchParams(location.check);
+        if(URLSearch.has("searchObj")){
+            const searchObj = URLSearch.get("searchObj");
+            if(searchObj == "") {
+                return;
+            }
+            const reserveData = document.querySelector(".reserve-data td");
+            reserveData.value = searchValue;
+			const reserveDate = document.querySelector(".reserve-date td");
+            reserveDate.value = searchValue;
+			const peopleList = document.querySelector(".people-list td");
+            peopleList.value = searchValue;
 
-        // responseData.forEach((data, index) => {
-        //     bookListBody.innerHTML += `
-        //         <tr>
-        //             <td><input type="checkbox" class="delete-checkbox"></td>
-        //             <td class="book-id">${data.bookId}</td>
-        //             <td>${data.bookCode}</td>
-        //             <td>${data.bookName}</td>
-        //             <td>${data.author}</td>
-        //             <td>${data.publisher}</td>
-        //             <td>${data.publicationDate}</td>
-        //             <td>${data.category}</td>
-        //             <td>${data.rentalStatus == "Y" ? "대여중" : "대여가능"}</td>
-        //             <td><a href="/templates/admin/book_modification.html?bookCode=${data.bookCode}"><i class="fa-solid fa-square-pen"></i></a></td>
-        //         </tr>
-        //     `;
-        // });
+            const reserveButton = document.querySelector(".reserve-button");
+            reserveButton.click();
+        }
+    }*/
 
+	setReserveData() {
+		const responseData = CheckApi.getInstance().getCheckList();
+		
+		// checkListBody = innerHTML = "";
+		
+		responseData.forEach((data, index) => {
+			const checkListBody = document.querySelector(".reserve-contents1 tbody");
+			checkListBody.innerHTML += `
+				<tr>                       
+					<th>성명(한글)</th>
+					<td>${data.reserveName}</td> 
+				</tr>
+				<tr>                       
+					<th>예약번호</th>
+					<td>${data.reserveId}</td>
+				</tr>
+				<tr>
+					<th>연락처</th>
+					<td>${data.number}</td>
+				</tr>        
+				<tr>
+					<th>이메일</th>
+					<td>${data.email}</td>
+				</tr>  
+			`;
+		});
+	}
 }
 
-class ComponetEvent {
-	static #instance = null;
-	static getInstance() {
-		if(this.#instance == null) {
-			this.#instance = new ComponetEvent();
-		}
-		return this.#instance;
-	}
-	addClickEventHomeButton() {
-		const homeButton = document.querySelector(".home-button");
-
-		homeButton.onclick = () => {
-			
-		}
-	}
-
-}

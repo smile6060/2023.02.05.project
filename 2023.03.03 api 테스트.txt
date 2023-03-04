@@ -1,0 +1,34 @@
+@ValidAspect
+//    @PostMapping("/check")
+//    public ResponseEntity<?> getSearchReserveCheck(@RequestBody DinningMst dinningMst) {
+//        return ResponseEntity
+//                .ok()
+//                .body(new CMRespDto<>(HttpStatus.OK.value(), "Successfully", reserveService.getSearchReserveCheck(dinningMst)));
+//
+//    }
+
+    @PostMapping("/check/page")
+    public ResponseEntity<?> checkPage(@RequestBody DinningMst dinningMst) {
+        System.out.println("잘 전달됨");
+        reserveService.adduserSearchReserve(dinningMst);
+        return ResponseEntity
+                .created(null)
+                .body(true);
+
+    }
+
+    @GetMapping("/page/{reserveId}")
+    public ResponseEntity<?> getCheckPage(@PathVariable int reserveId) {
+        DinningMst dinningMst = reserveService.getuserSearchReserve(reserveId);
+        return ResponseEntity
+                .ok()
+                .body(dinningMst);
+    }
+
+}
+
+
+
+--------------------
+service
+
