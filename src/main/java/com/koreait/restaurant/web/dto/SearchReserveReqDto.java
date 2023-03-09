@@ -17,4 +17,5 @@ public class SearchReserveReqDto {
 
     private String number;
 
+
 }

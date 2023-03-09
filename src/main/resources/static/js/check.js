@@ -1,7 +1,9 @@
 window.onload = () => {
-	CheckService.getInstance().setReserveData();
+	CheckService.getInstance().loadReserveData();
+	ComponentEvent.getInstance().addClickEventDeleteButton();
 }
 
+const URLSearch = new URLSearchParams(location.search);
 
 class CheckApi {
 	static #instance = null;
@@ -12,15 +14,17 @@ class CheckApi {
 		return this.#instance;
 	}
 
-	getCheckList() {
+	getReserveData() {
 		let returnData = null;
 
 		$.ajax({
 			async: false,
 			type: "get",
 			url: "http://localhost:8000/api/search/contents",
-			contentType: "application/json",
-			data: JSON.stringify(),
+			data: {
+				reserveId : URLSearch.get("reserveId"),
+				number : URLSearch.get("number")
+			},
 			dataType: "json",
 			success: response => {
 				console.log(response);
@@ -30,6 +34,7 @@ class CheckApi {
 				console.log(error);
 			}
 		});
+
 		return returnData;
 	}
 
@@ -44,33 +49,17 @@ class CheckService{
 		return this.#instance;
 	}
 
-	/*onLoadSearch() {
-        const URLSearch = new URLSearchParams(location.check);
-        if(URLSearch.has("searchObj")){
-            const searchObj = URLSearch.get("searchObj");
-            if(searchObj == "") {
-                return;
-            }
-            const reserveData = document.querySelector(".reserve-data td");
-            reserveData.value = searchValue;
-			const reserveDate = document.querySelector(".reserve-date td");
-            reserveDate.value = searchValue;
-			const peopleList = document.querySelector(".people-list td");
-            peopleList.value = searchValue;
+	loadReserveData() {
+		const responseData = CheckApi.getInstance().getReserveData();
+		const reserveContents1 = document.querySelector(".reserve-contents1 tbody");
+		const reserveContents2 = document.querySelector(".reserve-contents2 tbody");
+		const reserveContents3 = document.querySelector(".reserve-contents3 tbody");
+		reserveContents1.innerHTML = "";
+		reserveContents2.innerHTML = "";
+		reserveContents3.innerHTML = "";
 
-            const reserveButton = document.querySelector(".reserve-button");
-            reserveButton.click();
-        }
-    }*/
-
-	setReserveData() {
-		const responseData = CheckApi.getInstance().getCheckList();
-		
-		// checkListBody = innerHTML = "";
-		
-		responseData.forEach((data, index) => {
-			const checkListBody = document.querySelector(".reserve-contents1 tbody");
-			checkListBody.innerHTML += `
+		responseData.forEach(data => {
+			reserveContents1.innerHTML += `
 				<tr>                       
 					<th>성명(한글)</th>
 					<td>${data.reserveName}</td> 
@@ -89,6 +78,47 @@ class CheckService{
 				</tr>  
 			`;
 		});
+		responseData.forEach(data => {
+			reserveContents2.innerHTML += `
+				<tr>                       
+					<th>예약일</th> 
+					<td>${data.reserveDate}</td>
+				</tr>
+				<tr>
+					<th>예약시간</th>
+					<td>${data.reserveTime}</td>
+				</tr>
+			`;
+		});
+		responseData.forEach(data => {
+			reserveContents3.innerHTML += `
+				<tr> 
+					<th>대인</th>
+					<td>${data.adult}명</td>
+				</tr>
+				<tr>
+					<th>소인</th>
+					<td>${data.child}명</td>
+				</tr>
+			`;
+		});
 	}
 }
 
+class ComponentEvent {
+    static #instance = null;
+    static getInstance() {
+        if(this.#instance == null) {
+            this.#instance = new ComponentEvent();
+        }
+        return this.#instance;
+    }
+
+	addClickEventDeleteButton() {
+		const deleteButton = document.querySelector(".delete-button");
+
+		deleteButton.onclick = () => {
+			alert("정말로 예약을 취소하시겠습니까?");
+		}
+	}
+}

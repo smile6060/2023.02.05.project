@@ -1,8 +1,5 @@
-window.onload = () => {
-	ComponentEvent.getInstance().addClickEventReserveButton();
-
-	// ReservePageService.getInstance().onLoadCheck();
-	// ReservePageService.getInstance().setReserveData();
+window.onclick = () => {
+    ComponentEvent.getInstance().addClickEventReserveButton();
 }
 
 $(document).ready(function(){
@@ -19,12 +16,6 @@ $(document).ready(function(){
 
 });
 
-const reserveObj = {
-	reserveId: "",
-	reserveName: "",
-	number: ""
-}
-
 class ReservePageApi {
 	static #instance = null;
 	static getInstance() {
@@ -34,95 +25,26 @@ class ReservePageApi {
 		return this.#instance();
 	}
 
-	setCheckPage() {
-		$.ajax({
-			async: false,
-			type: "post",
-			url: "http://localhost:8000/api/reserve/page/{reserveId}",
-			contentType: "application/json",
-			data: JSON.stringify(),
-			dataType: "json",
-			success: response => {
-				responseData = response.data;
-			},
-			error: error => {
-				console.log(error);
-			}
-		});
-		return responseData;
-	}
-
-	setReserveCheck() {
-		$.ajax({
-			async: false,
-			type: "post",
-			url: "http://localhost:8000/api/reserve/check",
-			contentType: "application/json",
-			data: JSON.stringify(),
-			dataType: "json",
-			success: response => {
-				responseData = response.data;
-			},
-			error: error => {
-				console.log(error);
-			}
-		});
-		return responseData;
-	}
-}
-
-class ReservePageService {
-    static #instance = null;
-    static getInstance() {
-        if(this.#instance == null) {
-            this.#instance = new ReservePageService();
-        }
-        return this.#instance;
-    }
-
-	onLoadCheck() {
-        const URLSearch = new URLSearchParams(location.check);
-        if(URLSearch.has("reserveId")){
-            const reserveId = URLSearch.get("reserveId");
-            if(reserveId == "") {
-                return;
+    
+    check(checkReserve) {
+        $.ajax({
+            async: false,
+            type: "post",
+            url: "http://localhost:8000/api/reserve/page/{reserveId}",
+            contentType: "application/json",
+            data: JSON.stringify(checkReserve),
+            dataType: "json",
+            success: response => {
+                responseData = response.data;
+                alert(responseData);
+            },
+            error: error => {
+                console.log(error);
+                alert(error);
             }
-            const inputOne = document.querySelector(".input-one");
-            inputOne.value = reserveId;
-
-            const reserveButton = document.querySelector(".reserve-button");
-            reserveButton.click();
-        }
-		this.setReserveData();
-		
+        });
+        return responseData;
     }
-
-    setReserveData() {
-		const responseData = ReservePageApi.getInstance().reserveObj();
-		const reserveData = document.querySelector(".reserve-data");
-		reserveData=innerHTML = ``;
-		
-		responseData.forEach((data, index) => {
-			reserveData.innerHTML += `
-				<tr>                       
-					<th>성명(한글)</th>
-					<td>${data.reserveName}</td> 
-				</tr>
-				<tr>                       
-					<th>예약번호</th>
-					<td>${data.reserveId}</td>
-				</tr>
-				<tr>
-					<th>연락처</th>
-					<td>${data.number}</td>
-				</tr>        
-				<tr>
-					<th>이메일</th>
-					<td>${data.email}</td>
-				</tr>  
-			`;
-		});
-	}
 }
 
 class ComponentEvent {
@@ -133,45 +55,36 @@ class ComponentEvent {
         }
         return this.#instance;
     }
-
-	addClickEventReserveButton() {
-		const reserveButton = document.querySelector(".reserve-button");
-		/*var inputResv = document.getElementById("reserve-number1").value;
-		var inputTel = document.getElementById("telephone-name1").value;*/
-
-		var listVar1 = $('#reserve-number1').val();
-		var listVar2 = $('#telephone-name1').val();
-
-		/*const inputOne = document.querySelectorAll("reserve-number1");
-		const inputTwo = document.querySelectorAll("telephone-name1");*/
+    
+    addClickEventReserveButton() {
+        const reserveButton = document.querySelector(".reserve-button");
 
         reserveButton.onclick = () => {
-			console.log(listVar1);
-			console.log(listVar2);
+            const reserveIdValue = document.querySelectorAll(".input-contents")[0].value;
+            const numberValue = document.querySelectorAll(".input-contents")[1].value;
+            const reserveNameValue = document.querySelectorAll(".input-contents")[3].value;
+       
+            const checkReserve = new CheckReserve(reserveIdValue, reserveNameValue, numberValue);
 
-	
+            console.log(checkReserve);
 
-			if(listVar1.value == null) {
-				return false;
-			} else {
-				location.reload();
-			}
-			if(listVar2.value == null) {
-				return false;
-			} else {
-				location.reload();
-			}
-
-			location.href = `http://localhost:8000/check?reserveId=${listVar1.value}`;
-			listVar1.onkeyup = () => {
-				if (window.event.keyCode == 13) {
-					reserveButton.click();
-				}
-            }
-			ReservePageService.getInstance().onLoadCheck();
-			ReservePageService.getInstance().setReserveData();
+            location.href = `http://localhost:8000/check?reserveId=${reserveIdValue}&number=${numberValue}`;
+            
+            ReservePageApi.getInstance().check(checkReserve);
         }
     }
-
 }
+
+class CheckReserve {
+    reserveId = null;
+	reserveName = null;
+	number = null;
+
+    constructor(reserveId, reserveName, number) {
+        this.reserveId = reserveId;
+        this.reserveName = reserveName;
+        this.number = number;
+    }
+}
+
 

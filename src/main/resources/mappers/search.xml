@@ -5,9 +5,20 @@
 
 <mapper namespace="com.koreait.restaurant.repository.SearchRepository">
 
-    <select id="searchReserve"
-            parameterType="com.koreait.restaurant.web.dto.SearchReserveReqDto"
-            resultType="com.koreait.restaurant.entity.DinningMst">
+    <resultMap id="dinningMst" type="com.koreait.restaurant.entity.DinningMst">
+        <result property="reserveId" column="reserve_id"></result>
+        <result property="reserveName" column="reserve_name"></result>
+        <result property="reserveDate" column="reserve_date"></result>
+        <result property="reserveTime" column="reserve_time"></result>
+        <result property="number" column="number"></result>
+        <result property="email" column="email"></result>
+        <result property="adult" column="adult"></result>
+        <result property="child" column="child"></result>
+        <result property="guest" column="guest"></result>
+        <result property="request" column="request"></result>
+    </resultMap>
+
+    <select id="searchReserve" resultType="com.koreait.restaurant.entity.DinningMst">
             select
                 reserve_id as reserveId,
                 reserve_name as reserveName,
@@ -16,60 +27,21 @@
                 number,
                 email,
                 adult,
-                child,
-                guest,
-                request
+                child
             from
                 dinning_mst
             where
                 1 = 1
-                <if test="reserveId != null and reserveId != '' and reserveName != null and reserveName != '' and number != null and number != ''">
-                    and (
-                            reserve_id like CONCAT(#{reserveId})
-                        or reserve_name like CONCAT(#{reserveName})
-                        or number like CONCAT(#{number})
-                    )
-                </if>
-<!--        <if test="reserveName != null and reserveName != ''">-->
-<!--            select-->
-<!--                reserve_id as reserveId,-->
-<!--                reserve_name as reserveName,-->
-<!--                reserve_date as reserveDate,-->
-<!--                reserve_time as reserveTime,-->
-<!--                number,-->
-<!--                email,-->
-<!--                adult,-->
-<!--                child,-->
-<!--                guest,-->
-<!--                request-->
-<!--            from-->
-<!--                dinning_mst-->
-<!--            where-->
-<!--                1 = 1-->
-<!--            and (-->
-<!--                reserve_name like CONCAT(#{reserveName})-->
-<!--            )-->
-<!--        </if>-->
-<!--        <if test="number != null and number != ''">-->
-<!--            select-->
-<!--                reserve_id as reserveId,-->
-<!--                reserve_name as reserveName,-->
-<!--                reserve_date as reserveDate,-->
-<!--                reserve_time as reserveTime,-->
-<!--                number,-->
-<!--                email,-->
-<!--                adult,-->
-<!--                child,-->
-<!--                guest,-->
-<!--                request-->
-<!--            from-->
-<!--                dinning_mst-->
-<!--            where-->
-<!--                1 = 1-->
-<!--            and (-->
-<!--                number like CONCAT(#{number})-->
-<!--            )-->
-<!--        </if>-->
+            and reserve_id = #{reserveId}
+            and number = #{number} ;
+
     </select>
+
+    <insert id="saveReserveCheck" parameterType="com.koreait.restaurant.web.dto.SearchReqDto">
+        insert into dinning_mst
+        values
+            (0, #{reserveId}, #{reserveName}, #{reserveDate}, #{reserveTime}, #{number}, #{email}, #{adult}, #{child})
+    </insert>
+
 
 </mapper>

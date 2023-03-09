@@ -1,0 +1,7 @@
+<insert id="saveReserveCheck" parameterType="com.koreait.restaurant.web.dto.SearchReqDto"
+ useGeneratedKeys="true" keyProperty="reserveId">
+        insert into dinning_mst
+        values
+            (0, #{reserveId}, #{reserveName}, #{reserveDate}, #{reserveTime}, #{number}, #{email}, #{adult}, #{child}, #{guest}, #{request})
+    </insert>
+           

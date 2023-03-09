@@ -5,41 +5,23 @@
 
 <mapper namespace="com.koreait.restaurant.repository.ReserveRepository">
 
-    <resultMap id="dinningMst" type="com.koreait.restaurant.entity.DinningMst">
+    <resultMap id="dinningMst" type="com.koreait.restaurant.web.dto.SearchReserveReqDto">
         <result property="reserveId" column="reserve_id"></result>
         <result property="reserveName" column="reserve_name"></result>
-        <result property="reserveDate" column="reserve_date"></result>
-        <result property="reserveTime" column="reserve_time"></result>
         <result property="number" column="number"></result>
-        <result property="email" column="email"></result>
-        <result property="adult" column="adult"></result>
-        <result property="child" column="child"></result>
-        <result property="guest" column="guest"></result>
-        <result property="request" column="request"></result>
     </resultMap>
 
-    <insert id="saveReserveCheck" parameterType="com.koreait.restaurant.entity.DinningMst"
-            useGeneratedKeys="true" keyProperty="reserveId">
-        insert into dinning_mst
-        values(0, #{reserveId}, #{reserveName}, #{reserveDate}, #{reserveTime}, #{number}, #{email}, #{adult}, #{child}, #{guest}, #{request})
-    </insert>
-
-    <select id="findUserByReserveId" parameterType="integer" resultType="com.koreait.restaurant.entity.DinningMst">
+    <select id="findUserByReserveId" parameterType="integer" resultType="com.koreait.restaurant.web.dto.SearchReserveReqDto">
         select
             reserve_id as reserveId,
             reserve_name as reserveName,
-            reserve_date as reserveDate,
-            reserve_time as reserveTime,
-            number,
-            email,
-            adult,
-            child,
-            guest,
-            request
+            number
         from
             dinning_mst
         where
-            reserve_id = #{reserveId}
+            1 = 1
+        and reserve_id = #{reserveId}
+        and number = #{number}
     </select>
 
 

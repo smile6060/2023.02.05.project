@@ -2,6 +2,7 @@ package com.koreait.restaurant.service;
 
 import com.koreait.restaurant.entity.DinningMst;
 import com.koreait.restaurant.repository.ReserveRepository;
+import com.koreait.restaurant.web.dto.SearchReserveReqDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,14 +15,10 @@ import java.util.Map;
 public class ReserveService {
 
     @Autowired
-    private final ReserveRepository reserveRepository;
+    private ReserveRepository reserveRepository;
 
-    public int getSearchReserveCheck(DinningMst dinningMst) {
-       return reserveRepository.saveReserveCheck(dinningMst);
-
-    }
-    public int userSearchReserve(DinningMst dinningMst) {
-        return reserveRepository.findUserByReserveId(dinningMst);
+    public int userSearchReserve(SearchReserveReqDto searchReserveReqDto) {
+        return reserveRepository.findUserByReserveId(searchReserveReqDto);
 
     }
 

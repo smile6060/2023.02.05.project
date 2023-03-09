@@ -1,0 +1,63 @@
+ <insert id="saveReserveCheck" parameterType="list">
+        insert into dinning_mst
+        values
+        <foreach collection="list" item="data" separator=",">
+            values(0, #{data.reserveId}, #{data.reserveName}, #{data.reserveDate}, #{data.reserveTime}, #{data.number}, #{data.email}, #{data.adult}, #{data.child}, #{data.guest}, #{data.request})
+        </foreach>
+    </insert>
+
+
+
+---------------------------------------------------
+1 = 1
+                <if test="reserveId != null and reserveId != '' and reserveName != null and reserveName != '' and number != null and number != ''">
+                    and (
+                            reserve_id like CONCAT(#{reserveId})
+                        or reserve_name like CONCAT(#{reserveName})
+                        or number like CONCAT(#{number})
+                    )
+                </if>
+
+
+
+
+        <if test="reserveName != null and reserveName != ''">
+            select
+                reserve_id as reserveId,
+                reserve_name as reserveName,
+                reserve_date as reserveDate,
+                reserve_time as reserveTime,
+                number,
+                email,
+                adult,
+                child,
+                guest,
+                request
+            from
+                dinning_mst
+            where
+                1 = 1
+            and (
+                reserve_name like CONCAT(#{reserveName})
+            )
+        </if>
+        <if test="number != null and number != ''">
+            select
+                reserve_id as reserveId,
+                reserve_name as reserveName,
+                reserve_date as reserveDate,
+                reserve_time as reserveTime,
+                number,
+                email,
+                adult,
+                child,
+                guest,
+                request
+            from
+                dinning_mst
+            where
+                1 = 1
+            and (
+                number like CONCAT(#{number})
+            )
+        </if>

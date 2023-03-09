@@ -1,0 +1,36 @@
+/*onLoadSearch() {
+        const URLSearch = new URLSearchParams(location.check);
+        if(URLSearch.has("searchObj")){
+            const searchObj = URLSearch.get("searchObj");
+            if(searchObj == "") {
+                return;
+            }
+            const reserveData = document.querySelector(".reserve-data td");
+            reserveData.value = searchValue;
+			const reserveDate = document.querySelector(".reserve-date td");
+            reserveDate.value = searchValue;
+			const peopleList = document.querySelector(".people-list td");
+            peopleList.value = searchValue;
+
+            const reserveButton = document.querySelector(".reserve-button");
+            reserveButton.click();
+        }
+    }*/
+
+	
+
+loadReserveData() {
+        const responseData = CheckApi.getInstance().getCheckList();
+
+        if(responseData.dinningMst == null) {
+            alert("해당 예약 정보는 등록되지 않은 예약 정보입니다.");
+            history.back();
+            return;
+        }
+
+        const reserveContents1 = document.querySelectorAll(".reserve-contents1 td");
+        reserveContents1[0].value = responseData.dinningMst.reserveName;
+        reserveContents1[1].value = responseData.dinningMst.reserveId;
+        reserveContents1[2].value = responseData.dinningMst.number;
+      
+    }

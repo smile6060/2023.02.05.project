@@ -23,13 +23,13 @@
             <h2 class="main-name">예약 정보 확인</h2>
             <div class="menu-line"></div>
 
-            <h2 class="menu-name">예약 고객 정보</h2> 
+            <h2 class="menu-name">예약 고객 정보</h2>
             <div class="main-box">
                 <table class="reserve-contents1" >
-                    <thead>
+                    <tbody>
                         <tr>                       
                             <th>성명(한글)</th>
-                            <td></td> 
+                            <td></td>
                         </tr>
                         <tr>                       
                             <th>예약번호</th>
@@ -43,8 +43,6 @@
                             <th>이메일</th>
                             <td></td>
                         </tr> 
-                    </thead>
-                    <tbody>
                     </tbody>
                 </table>
             </div>
@@ -52,29 +50,33 @@
             <div class="serve-container">
                 <h2 class="menu-name">예약 날짜</h2>
                 <div class="main-box">
-                    <table class="reserve-contents2" >
-                        <tr>                       
-                            <th>예약일</th> 
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th>예약날짜</th>
-                            <td></td>
-                        </tr> 
+                    <table class="reserve-contents2">
+                        <tbody>
+                            <tr>                       
+                                <th>예약일</th> 
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>예약시간</th>
+                                <td></td>
+                            </tr>
+                        </tbody> 
                     </table> 
                 </div>
                 
                 <h2 class="menu-name">인원</h2>
                 <div class="main-box">
                     <table class="reserve-contents3">
-                        <tr> 
-                            <th>대인</th>
-                            <td>명</td>
-                        </tr>
-                        <tr>
-                            <th>소인</th>
-                            <td>명</td>
-                        </tr>
+                        <tbody>
+                            <tr> 
+                                <th>대인</th>
+                                <td>명</td>
+                            </tr>
+                            <tr>
+                                <th>소인</th>
+                                <td>명</td>
+                            </tr>
+                        </tbody>
                     </table> 
                 </div>
 
@@ -86,7 +88,7 @@
                 <div class="menu-line"></div>
                 <div class="group-button">
                     <button type="button" class="change-button">예약변경</button>
-                    <button type="button">예약취소</button>
+                    <button type="button" class="delete-button">예약취소</button>
                 </div>
                 
             </div>
