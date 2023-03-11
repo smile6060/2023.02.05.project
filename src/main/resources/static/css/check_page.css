@@ -204,7 +204,7 @@ ul.reserve-search{
     align-items: center;
 }
 
-.reserve-button {
+.reserve-button1, .reserve-button2 {
     margin: 0px;
     padding: 0px;
 
@@ -220,7 +220,7 @@ ul.reserve-search{
     cursor: pointer;
 }
 
-.reserve-button:hover {
+.reserve-button1:hover, .reserve-button2:hover {
     background-color: #183a1d;
 }
 

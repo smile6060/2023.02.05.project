@@ -18,30 +18,40 @@
         <result property="request" column="request"></result>
     </resultMap>
 
-    <select id="searchReserve" resultType="com.koreait.restaurant.entity.DinningMst">
-            select
-                reserve_id as reserveId,
-                reserve_name as reserveName,
-                reserve_date as reserveDate,
-                reserve_time as reserveTime,
-                number,
-                email,
-                adult,
-                child
-            from
-                dinning_mst
-            where
-                1 = 1
-            and reserve_id = #{reserveId}
-            and number = #{number} ;
-
+    <select id="searchReserveIdAndNumber" resultType="com.koreait.restaurant.entity.DinningMst">
+        select
+            reserve_id as reserveId,
+            reserve_name as reserveName,
+            reserve_date as reserveDate,
+            reserve_time as reserveTime,
+            number,
+            email,
+            adult,
+            child,
+            request
+        from
+            dinning_mst
+        where
+            1 = 1
+        and reserve_id = #{reserveId}
+        and number = #{number}
+        or reserve_Name = #{reserveName}
     </select>
+
 
     <insert id="saveReserveCheck" parameterType="com.koreait.restaurant.web.dto.SearchReqDto">
         insert into dinning_mst
         values
             (0, #{reserveId}, #{reserveName}, #{reserveDate}, #{reserveTime}, #{number}, #{email}, #{adult}, #{child})
     </insert>
+
+    <delete id="deleteReserve">
+        delete
+        from
+            dinning_mst
+        where
+            reserve_Id = #{reserveId}
+    </delete>
 
 
 </mapper>

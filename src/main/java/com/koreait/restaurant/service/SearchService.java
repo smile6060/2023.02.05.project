@@ -18,9 +18,12 @@ public class SearchService {
     private SearchRepository searchRepository;
 
 
-    public List<DinningMst> searchReserve(SearchReqDto searchReqDto) {
+    public List<DinningMst> searchReserveIdAndNumber(SearchReqDto searchReqDto) {
         System.out.println(searchReqDto);
-        return searchRepository.searchReserve(searchReqDto);
+        return searchRepository.searchReserveIdAndNumber(searchReqDto);
     }
 
+    public void removeReserve(int reserveId) {
+        searchRepository.deleteReserve(reserveId);
+    }
 }

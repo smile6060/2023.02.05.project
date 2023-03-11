@@ -20,10 +20,11 @@ class CheckApi {
 		$.ajax({
 			async: false,
 			type: "get",
-			url: "http://localhost:8000/api/search/contents",
+			url: "http://localhost:8000/api/contents1",
 			data: {
 				reserveId : URLSearch.get("reserveId"),
-				number : URLSearch.get("number")
+				number : URLSearch.get("number"),
+				reserveName : URLSearch.get("reserveName")
 			},
 			dataType: "json",
 			success: response => {
@@ -36,6 +37,31 @@ class CheckApi {
 		});
 
 		return returnData;
+	}
+
+	deleteReserve(deleteArray) {
+        let returnFlag = false;
+
+        $.ajax({
+            async: false,
+            type: "delete",
+            url: "http://localhost:8000/api/contents1",
+            contentType: "application/json",
+            data: JSON.stringify(
+                {
+                    reserveId: deleteArray
+                }
+            ),
+            dataType: "json",
+            success: response => {
+                returnFlag = true;
+            },
+            error: error => {
+                console.log(error);
+            }
+        })
+
+        return returnFlag;
 	}
 
 }
@@ -51,6 +77,7 @@ class CheckService{
 
 	loadReserveData() {
 		const responseData = CheckApi.getInstance().getReserveData();
+
 		const reserveContents1 = document.querySelector(".reserve-contents1 tbody");
 		const reserveContents2 = document.querySelector(".reserve-contents2 tbody");
 		const reserveContents3 = document.querySelector(".reserve-contents3 tbody");
@@ -103,6 +130,13 @@ class CheckService{
 			`;
 		});
 	}
+	
+	removeReserve(deleteArray) {
+        let successFlag = CheckApi.getInstance().deleteReserve(deleteArray);
+        if(successFlag) {
+            location.replace("/check/page");
+        }
+    }
 }
 
 class ComponentEvent {
@@ -118,7 +152,31 @@ class ComponentEvent {
 		const deleteButton = document.querySelector(".delete-button");
 
 		deleteButton.onclick = () => {
-			alert("정말로 예약을 취소하시겠습니까?");
+			if(confirm("정말로 예약을 취소하시겠습니까?")) {
+				const deleteArray = new Array();
+
+				CheckService.getInstance().removeReserve(deleteArray);
+			}
 		}
 	}
+
+	// addClickEventDeleteButton() {
+    //     const deleteButton = document.querySelector(".delete-button");
+    //     deleteButton.onclick = () => {
+    //         if(confirm("정말로 삭제하시겠습니까?")) {
+    //             const deleteArray = new Array();
+    
+    //             const deleteCheckboxs = document.querySelectorAll(".delete-checkbox");
+
+    //             deleteCheckboxs.forEach((deleteCheckbox, index) => {
+    //                 if(deleteCheckbox.checked) {
+    //                     const bookIds = document.querySelectorAll(".book-id");
+    //                     deleteArray.push(bookIds[index].textContent);
+    //                 }
+    //             });
+    
+    //             BookService.getInstance().removeBooks(deleteArray);
+    //         }
+    //     }
+    // }
 }

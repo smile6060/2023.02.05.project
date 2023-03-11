@@ -11,19 +11,18 @@
         <result property="number" column="number"></result>
     </resultMap>
 
-    <select id="findUserByReserveId" parameterType="integer" resultType="com.koreait.restaurant.web.dto.SearchReserveReqDto">
+    <select id="findUserByReserveIdAndNumber" parameterType="integer" resultType="com.koreait.restaurant.entity.DinningMst">
         select
             reserve_id as reserveId,
-            reserve_name as reserveName,
-            number
+            number,
+            reserve_name as reserveName
         from
             dinning_mst
         where
             1 = 1
         and reserve_id = #{reserveId}
         and number = #{number}
+        or reserve_name = #{reserveName}
     </select>
-
-
 
 </mapper>

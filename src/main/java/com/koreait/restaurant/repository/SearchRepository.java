@@ -11,8 +11,11 @@ import java.util.Map;
 @Mapper
 public interface SearchRepository {
 
-   public List<DinningMst> searchReserve(SearchReqDto searchReqDto);
+
+   public List<DinningMst> searchReserveIdAndNumber(SearchReqDto searchReqDto);
 
    public int saveReserveCheck(SearchReqDto searchReqDto);
+
+   public int deleteReserve(int reserveId);
 
 }

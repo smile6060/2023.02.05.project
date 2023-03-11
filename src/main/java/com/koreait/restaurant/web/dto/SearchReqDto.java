@@ -23,4 +23,6 @@ public class SearchReqDto {
 
     private int child;
 
+    private String request;
+
 }
