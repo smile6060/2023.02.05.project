@@ -1,70 +1,70 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/test.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>hotsix</title>
+	<meta charset="UTF-8">
+	<title>Title</title>
 </head>
+<script>
+function deleteById(memberId) {
+	console.log(memberId)
+	const reqUrl = "/member/"+memberId
+	$.ajax({
+		type: "delete",
+		url: reqUrl,
+		// dataType: "json", 받아올 필요가 없으면 생략가능
+		success: function () {
+			console.log("ajax 성공")
+			// 삭제 성공 시 회원목록 페이지를 다시 요청
+			location.href = "/member/"
+		},
+		error: function () {
+			alert("ajax 실패")
+		}
+
+	})
+}
+
+	// 아래도 함수선언 방법 중 하나임.
+	// 함수이름 : deleteFn, 매개변수 : memberId
+	const deleteFn = (memberId) => {
+		console.log(memberId)
+	}
+
+	// 함수이름 : deleteFn2, 매개변수 : X
+	const deleteFn2 = () => {
+	
+	}
+</script>
 <body>
-    <header class="header-container">hotsix</header>
-    <h1 class="home-button"><i class="fa-solid fa-house fa-3x"></i></h1>
-    <div class="main-container">
-        <div><h1 class="page-title">예약 확인</h1></div>
-        <div class="title-line"></div>
-        <p class="message">hotsix에 오신 것을 환영합니다.</p>
-        <div class="title-line"></div>
-
-        <div class="select">
-            <div class="reservation-search1">
-                <table class="reservation-change1">
-                    <tr>
-                        <th>예약 확인(TEL)</th>
-                    </tr>
-                </table>
-            </div>
-            <div class="reservation-search2">
-                <table class="reservation-change2">
-                    <tr> 
-                        <th>예약 확인(이름)</th>
-                    </tr>  
-                </table>
-            </div>
-        </div>
-
-        <div class="serve-container-group">
-            <div class="serve-container1">
-                <div class="third-container1">
-                    <div class="p-group">
-                        <p class="reservation-number">예약번호</p>
-                        <p class="change-name1">전화번호</p>
-                    </div>
-                    <div class="input-group">
-                        <input type="text" class="input-one">
-                        <input type="text">
-                    </div>
-                </div>
-                <div class="main-button">
-                    <button class="reservation-button">예약확인</button>
-                </div>
-
-                <div class="search-group">
-                    <p class="search-number">예약번호 찾기</p>
-                </div>
-               
-                <div class="serve-container2">
-                    <div class="third-container2">
-                        <div class="p-group">
-                            <p class="change-name2">이름</p>
-                </div>
-            </div>
-            
-        </div>
-    </div>
+	<h2>findAll.html</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>이메일</th>
+				<th>비밀번호</th>
+				<th>이름</th>
+				<th>조회</th>
+				<th>삭제(get)</th>
+				<!-- 이번 시간에는 아래 delete 방식으로 보내는걸 사용하는겁니다. -->
+				<th>삭제(delete)</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="member: ${memberList}">
+				<td th:text="${member.memberId}">번호</td>
+				<td th:text="${member.memberEmail}">이메일</td>
+				<td th:text="${member.memberPassword}">비밀번호</td>
+				<td th:text="${member.memberName}">이름</td>
+				<!-- detail 주소 처리방식 @{|/주소/${같이 보낼 데이터}|} -->
+				<td><a th:href="@{|/member/${member.memberId}|}">조회</a></td>
+				<td><a th:href="@{|/member/delete/${member.memberId}|}">삭제</a></td>
+				<!-- 삭제 버튼 클릭 시 delete 함수 호출 -->
+				<!-- 함수호출하면서 memeberId 넘겨야함 -->
+				<!-- delelte 함수() : /member/memberId 주소로 요청하며, 요청 메서드는 delete -->
+				<td><button th:onclick="deleteById([[${member.memberId}]])">삭제</button></td>
+			</tr>
+		</tbody>
+	</table>
 </body>
-<script src="/static/js/test.js"></script>
 </html>

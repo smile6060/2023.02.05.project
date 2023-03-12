@@ -5,13 +5,7 @@
 
 <mapper namespace="com.koreait.restaurant.repository.ReserveRepository">
 
-    <resultMap id="dinningMst" type="com.koreait.restaurant.web.dto.SearchReserveReqDto">
-        <result property="reserveId" column="reserve_id"></result>
-        <result property="reserveName" column="reserve_name"></result>
-        <result property="number" column="number"></result>
-    </resultMap>
-
-    <select id="findUserByReserveIdAndNumber" parameterType="integer" resultType="com.koreait.restaurant.entity.DinningMst">
+    <select id="findUserByReserveCheck" parameterType="integer" resultType="com.koreait.restaurant.entity.DinningMst">
         select
             reserve_id as reserveId,
             number,

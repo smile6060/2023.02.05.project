@@ -13,8 +13,8 @@ public class ReserveSearchService {
     @Autowired
     private ReserveRepository reserveRepository;
 
-    public int userSearchReserve1(SearchReserveReqDto searchReserveReqDto) {
-        return reserveRepository.findUserByReserveIdAndNumber(searchReserveReqDto);
+    public int userSearchReserve(SearchReserveReqDto searchReserveReqDto) {
+        return reserveRepository.findUserByReserveCheck(searchReserveReqDto);
 
     }
 

@@ -7,8 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ReserveRepository {
 
-    public int findUserByReserveIdAndNumber(SearchReserveReqDto searchReserveReqDto);
-//    public int findUserByReserveIdAndName(SearchReserveReqDto searchReserveReqDto);
+    public int findUserByReserveCheck(SearchReserveReqDto searchReserveReqDto);
 
 }
 

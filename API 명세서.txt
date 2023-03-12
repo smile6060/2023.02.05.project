@@ -1,0 +1,24 @@
+//API 명세서
+
+Index	Method	URI	Description
+1	POST	/api/reserve/search/{reserveId}	예약조회 검색
+2	GET	/api/check	예약조회
+3	DELETE	/api/check/{reserveId}	예약취소
+
+
+
+
+
+// ERD 명세서
+
+reserve_id	Int
+reserve_name	String
+reserve_date	Date
+reserve_time	String
+number	String
+email	String
+adult	Int
+child	Int
+guest	String
+request	String
+menu	String

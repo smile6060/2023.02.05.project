@@ -1,0 +1,4 @@
+SELECT * FROM dinning_mst;
+
+insert into dinning_mst (reserve_id, reserve_name, reserve_date, reserve_time, number, email, adult, child)
+values (1, '류지연', '2023-03-04', '11:00 ~ 14:00', '010-1111-4444', 'ryuha@gmail.com', 4, 0);

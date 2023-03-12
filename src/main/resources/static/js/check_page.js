@@ -31,7 +31,7 @@ class ReservePageApi {
         $.ajax({
             async: false,
             type: "post",
-            url: "http://localhost:8000/api/reserve/check/{reserveId}",
+            url: "http://localhost:8000/api/reserve/search/{reserveId}",
             contentType: "application/json",
             data: JSON.stringify(checkReserve),
             dataType: "json",

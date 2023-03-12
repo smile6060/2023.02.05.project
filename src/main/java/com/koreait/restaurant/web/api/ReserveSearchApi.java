@@ -17,12 +17,12 @@ public class ReserveSearchApi {
     @Autowired
     private ReserveSearchService reserveService;
 
-    @PostMapping("/check/{reserveId}")
-    public ResponseEntity<?> getCheckPage1(@RequestBody SearchReserveReqDto searchReserveReqDto) {
+    @PostMapping("/search/{reserveId}")
+    public ResponseEntity<?> getCheckPage(@RequestBody SearchReserveReqDto searchReserveReqDto) {
 
         return ResponseEntity
                 .ok()
-                .body(new CMRespDto<>(HttpStatus.OK.value(), "Successfully", reserveService.userSearchReserve1(searchReserveReqDto)));
+                .body(new CMRespDto<>(HttpStatus.OK.value(), "Successfully", reserveService.userSearchReserve(searchReserveReqDto)));
     }
 
 }

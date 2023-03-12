@@ -182,9 +182,16 @@ body {
 }
 
 
-.request-input {
-    width: 404px;
-    height: 30px;
+.reserve-contents4 td {
+    margin: 1px;
+    padding: 10px;
+    height: auto;
+    width: 400px;
+
+    border: 1px solid #bcbcbc;
+    font-size: 15px;
+
+
 }
 
 .group-button {

@@ -5,6 +5,7 @@ window.onload = () => {
 
 const URLSearch = new URLSearchParams(location.search);
 
+
 class CheckApi {
 	static #instance = null;
 	static getInstance() {
@@ -20,7 +21,7 @@ class CheckApi {
 		$.ajax({
 			async: false,
 			type: "get",
-			url: "http://localhost:8000/api/contents1",
+			url: "http://localhost:8000/api/check",
 			data: {
 				reserveId : URLSearch.get("reserveId"),
 				number : URLSearch.get("number"),
@@ -39,31 +40,28 @@ class CheckApi {
 		return returnData;
 	}
 
-	deleteReserve(deleteArray) {
-        let returnFlag = false;
-
-        $.ajax({
+	deleteReserve(deleteResvID) {
+		$.ajax({
             async: false,
             type: "delete",
-            url: "http://localhost:8000/api/contents1",
-            contentType: "application/json",
-            data: JSON.stringify(
+            url: `http://localhost:8000/api/check/${reserveId}`,
+			data: JSON.stringify(
                 {
-                    reserveId: deleteArray
+                    reserveId: deleteResvID
                 }
             ),
             dataType: "json",
-            success: response => {
-                returnFlag = true;
+            success: (response) => {
+                alert("예약 취소가 완료 되었습니다.");
+                location.reload("/check/page");
             },
-            error: error => {
+            error: (error) => {
+                alert("예약 취소가 실패 되었습니다. 관리자에게 문의하세요.");
                 console.log(error);
             }
         })
-
-        return returnFlag;
-	}
-
+    }
+		
 }
 
 class CheckService{
@@ -81,9 +79,11 @@ class CheckService{
 		const reserveContents1 = document.querySelector(".reserve-contents1 tbody");
 		const reserveContents2 = document.querySelector(".reserve-contents2 tbody");
 		const reserveContents3 = document.querySelector(".reserve-contents3 tbody");
-		reserveContents1.innerHTML = "";
-		reserveContents2.innerHTML = "";
-		reserveContents3.innerHTML = "";
+		const reserveContents4 = document.querySelector(".reserve-contents4 tbody");
+		reserveContents1, reserveContents2, reserveContents3, reserveContents4.innerHTML = "";
+		// reserveContents2.innerHTML = "";
+		// reserveContents3.innerHTML = "";
+		// reserveContents4.innerHTML = "";
 
 		responseData.forEach(data => {
 			reserveContents1.innerHTML += `
@@ -93,7 +93,7 @@ class CheckService{
 				</tr>
 				<tr>                       
 					<th>예약번호</th>
-					<td>${data.reserveId}</td>
+					<td class="reserve-id">${data.reserveId}</td>
 				</tr>
 				<tr>
 					<th>연락처</th>
@@ -129,14 +129,14 @@ class CheckService{
 				</tr>
 			`;
 		});
+		responseData.forEach(data => {
+			reserveContents4.innerHTML += `
+			<tr> 
+				<td>${data.request}</td>
+			</tr>
+			`;
+		});
 	}
-	
-	removeReserve(deleteArray) {
-        let successFlag = CheckApi.getInstance().deleteReserve(deleteArray);
-        if(successFlag) {
-            location.replace("/check/page");
-        }
-    }
 }
 
 class ComponentEvent {
@@ -152,31 +152,14 @@ class ComponentEvent {
 		const deleteButton = document.querySelector(".delete-button");
 
 		deleteButton.onclick = () => {
-			if(confirm("정말로 예약을 취소하시겠습니까?")) {
-				const deleteArray = new Array();
-
-				CheckService.getInstance().removeReserve(deleteArray);
+			if(confirm("정말로 삭제하시겠습니까?")) {
+                const deleteResvID = document.querySelectorAll(".reserve-id");
+		
+                CheckService.getInstance().loadReserveData(deleteResvID);
 			}
 		}
 	}
 
-	// addClickEventDeleteButton() {
-    //     const deleteButton = document.querySelector(".delete-button");
-    //     deleteButton.onclick = () => {
-    //         if(confirm("정말로 삭제하시겠습니까?")) {
-    //             const deleteArray = new Array();
-    
-    //             const deleteCheckboxs = document.querySelectorAll(".delete-checkbox");
-
-    //             deleteCheckboxs.forEach((deleteCheckbox, index) => {
-    //                 if(deleteCheckbox.checked) {
-    //                     const bookIds = document.querySelectorAll(".book-id");
-    //                     deleteArray.push(bookIds[index].textContent);
-    //                 }
-    //             });
-    
-    //             BookService.getInstance().removeBooks(deleteArray);
-    //         }
-    //     }
-    // }
 }
+
+
